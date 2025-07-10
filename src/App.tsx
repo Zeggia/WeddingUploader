@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, useRef } from 'react'
+import { useState, type ChangeEvent, useRef, useEffect } from 'react'
 import { MdPhotoCamera } from "react-icons/md";
 import styles from './App.module.css';
 
@@ -6,7 +6,17 @@ function App() {
   const [captured, setCaptured] = useState<string[]>([]);
   const [current, setCurrent] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    console.log(params.get('success'));
+    if (params.get('success') === 'true') {
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000); // Nasconde il toast dopo 3 secondi
+    }
+  }, []);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -38,6 +48,25 @@ function App() {
 
   return (
     <div className={styles.container}>
+      {showToast && (
+        <div
+          style={{
+            position: "fixed",
+            top: 24,
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: "#a97142",
+            color: "#fff",
+            padding: "16px 32px",
+            borderRadius: 8,
+            fontSize: 18,
+            zIndex: 1000,
+            boxShadow: "0 2px 8px rgba(0,0,0,0.15)"
+          }}
+        >
+          Grazie per il tuo ricordo!
+        </div>
+      )}
       <div className={styles.polaroid}>
         <div
           style={{
