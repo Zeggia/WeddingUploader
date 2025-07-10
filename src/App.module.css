@@ -1,0 +1,167 @@
+body, html, #root, .container {
+  font-family: 'Indie Flower', cursive, sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e9dac6 60%, #b08968 100%);
+  gap: 32px;
+}
+
+.polaroid {
+  background: #f5e9da;
+  border-radius: 18px;
+  box-shadow: 0 12px 36px rgba(120, 72, 36, 0.18), 0 1.5px 0 #b08968 inset;
+  width: 320px;
+  min-height: 340px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  border: 4px solid #b08968;
+  transition: none;
+}
+
+.polaroid:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 0 #eee inset;
+  transform: none;
+}
+
+.image {
+  width: 100%;
+  max-height: 220px;      /* Limita l’altezza massima */
+  object-fit: contain;    /* Oppure prova cover */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(120, 72, 36, 0.10);
+  display: block;
+  margin: 0 auto;
+  background: #e6ccb2;
+}
+
+.placeholder {
+  width: 100%;
+  height: 260px;
+  background: #e6ccb2;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #b08968;
+}
+
+.polaroid:hover .placeholder {
+  border: 2px solid #bdbdbd;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cameraButton {
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 8px;
+  /* rimosso transition */
+}
+
+.cameraButton:hover {
+  border: 2px solid #ccc;
+  background: #fff;
+}
+
+.uploadButton {
+  position: relative;
+  height: 44px;
+  padding: 0 32px;
+  border-radius: 10px;
+  border: none;
+  background: #a97142;
+  color: #fff;
+  font-family: 'Indie Flower', cursive, sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(120, 72, 36, 0.10);
+  cursor: pointer;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uploadButton.loading {
+  padding: 0 !important;
+  width: 44px;
+  min-width: 44px;
+  justify-content: center;
+}
+
+.uploadButton:hover:enabled {
+  background: #ffb347;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(255,179,71,0.15);
+}
+
+.uploadButton:disabled {
+  opacity: 0.6;
+  background: #a97142;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+/* Font handwriting per il testo sotto la foto */
+.polaroidText {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  width: 100%;
+  text-align: center;         /* già presente, lascia */
+  display: flex;              /* aggiungi */
+  justify-content: center;    /* aggiungi */
+  align-items: center;        /* aggiungi */
+  font-family: 'Indie Flower', 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1.1rem;
+  color: #7c5c3b;
+  letter-spacing: 1px;
+  user-select: none;
+  padding-top: 18px;
+}
+
+.spinner {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #fff;
+  border-top: 3px solid #a97142;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0; /* nessun margin */
+  pointer-events: none;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
